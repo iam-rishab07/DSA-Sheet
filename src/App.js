@@ -1,8 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { dsaData } from './data';
 import {
-  Sun,
-  Moon,
   Search,
   CheckCircle,
   Circle,
@@ -18,11 +16,8 @@ import {
 
 export default function DSATracker() {
   // --- STATE ---
-  // Theme state: defaults to dark mode
-  const [darkMode, setDarkMode] = useState(() => {
-    const saved = localStorage.getItem('theme');
-    return saved ? saved === 'dark' : true;
-  });
+  // KAIZEN is strictly dark theme
+  const darkMode = true;
 
   // Completion status: { [problemTitle]: boolean }
   const [progress, setProgress] = useState(() => {
@@ -253,20 +248,20 @@ export default function DSATracker() {
 
       {/* HEADER SECTION */}
       <header className="border-b border-slate-200/80 dark:border-neutral-900 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-md sticky top-0 z-10 transition-all duration-300 shadow-xs">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-row items-center justify-between gap-4">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4.5 flex flex-row items-center justify-between gap-4">
 
           {/* Logo Title Block */}
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-4">
             <img 
               src={darkMode ? "/logo_dark_theme.png" : "/logo_light_theme.png"} 
               alt="KAIZEN DSA Sheet Logo" 
-              className="w-9 h-9 rounded-lg object-cover shadow-md border border-emerald-550/10" 
+              className="w-14 h-14 rounded-xl object-contain shadow-md border border-emerald-550/10" 
             />
             <div>
-              <h1 className="text-lg font-bold tracking-tight bg-gradient-to-r from-teal-500 to-emerald-500 bg-clip-text text-transparent leading-none">
+              <h1 className="text-xl sm:text-2xl font-bold tracking-tight bg-gradient-to-r from-teal-500 to-emerald-500 bg-clip-text text-transparent leading-none">
                 KAIZEN DSA SHEET
               </h1>
-              <p className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-neutral-400 font-bold mt-0.5">
+              <p className="text-xs uppercase tracking-wider text-slate-500 dark:text-neutral-400 font-bold mt-1">
                 DSA Progress Tracker
               </p>
             </div>
@@ -303,18 +298,6 @@ export default function DSATracker() {
             </button>
 
             <div className="h-4 w-px bg-slate-200 dark:bg-neutral-900 mx-0.5 sm:mx-1"></div>
-
-            {/* Sun/Moon Toggle Switch */}
-            <button
-              onClick={() => setDarkMode(!darkMode)}
-              className={`p-1.5 sm:p-2 rounded-lg transition-all ${darkMode
-                  ? 'text-yellow-400 hover:bg-neutral-900 hover:text-yellow-300'
-                  : 'text-indigo-600 hover:bg-slate-100 hover:text-indigo-900'
-                }`}
-              title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
-            >
-              {darkMode ? <Sun size={16} className="sm:w-[18px] sm:h-[18px]" /> : <Moon size={16} className="sm:w-[18px] sm:h-[18px]" />}
-            </button>
 
             {/* Confirm Reset Open button */}
             <button
