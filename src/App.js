@@ -244,10 +244,10 @@ export default function DSATracker() {
   }, [searchQuery, activeFilter, difficultyFilter, progress]);
 
   return (
-    <div className={`${darkMode ? 'dark bg-slate-950 text-slate-50' : 'bg-slate-50 text-slate-900'} min-h-screen font-sans transition-colors duration-300`}>
+    <div className={`${darkMode ? 'dark bg-black text-neutral-50' : 'bg-slate-50 text-slate-900'} min-h-screen font-sans transition-colors duration-300`}>
 
       {/* HEADER SECTION */}
-      <header className="border-b border-slate-200/80 dark:border-slate-800 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md sticky top-0 z-10 transition-all duration-300 shadow-xs">
+      <header className="border-b border-slate-200/80 dark:border-neutral-900 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-md sticky top-0 z-10 transition-all duration-300 shadow-xs">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3.5 flex flex-row items-center justify-between gap-4">
 
           {/* Logo Title Block */}
@@ -259,17 +259,17 @@ export default function DSATracker() {
               <h1 className="text-lg font-bold tracking-tight bg-gradient-to-r from-teal-500 to-emerald-500 bg-clip-text text-transparent leading-none">
                 Rishi 150 Sheet
               </h1>
-              <p className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold mt-0.5">
+              <p className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-neutral-400 font-bold mt-0.5">
                 DSA Progress Tracker
               </p>
             </div>
           </div>
 
           {/* Solved Count pill badge in center */}
-          <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full border border-slate-250 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/50 text-xs font-semibold">
+          <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full border border-slate-250 dark:border-neutral-900 bg-slate-50/50 dark:bg-neutral-950/50 text-xs font-semibold">
             <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
-            <span className="text-slate-500 dark:text-slate-400">Solved:</span>
-            <span className="text-slate-855 dark:text-slate-200 font-bold">
+            <span className="text-slate-500 dark:text-neutral-450">Solved:</span>
+            <span className="text-slate-800 dark:text-neutral-200 font-bold">
               {stats.completedCount} / {stats.totalCount}
             </span>
           </div>
@@ -279,8 +279,8 @@ export default function DSATracker() {
             <button
               onClick={expandAll}
               className={`px-2.5 py-1 text-xxs font-bold uppercase rounded-md tracking-wider transition-colors ${darkMode
-                  ? 'text-slate-350 hover:bg-slate-800 hover:text-white'
-                  : 'text-slate-655 hover:bg-slate-100 hover:text-slate-900'
+                  ? 'text-neutral-400 hover:bg-neutral-900 hover:text-white'
+                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                 }`}
             >
               Expand All
@@ -288,21 +288,21 @@ export default function DSATracker() {
             <button
               onClick={collapseAll}
               className={`px-2.5 py-1 text-xxs font-bold uppercase rounded-md tracking-wider transition-colors ${darkMode
-                  ? 'text-slate-350 hover:bg-slate-800 hover:text-white'
-                  : 'text-slate-655 hover:bg-slate-100 hover:text-slate-900'
+                  ? 'text-neutral-400 hover:bg-neutral-900 hover:text-white'
+                  : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                 }`}
             >
               Collapse All
             </button>
 
-            <div className="h-4 w-px bg-slate-200 dark:bg-slate-800 mx-1"></div>
+            <div className="h-4 w-px bg-slate-200 dark:bg-neutral-900 mx-1"></div>
 
             {/* Sun/Moon Toggle Switch */}
             <button
               onClick={() => setDarkMode(!darkMode)}
               className={`p-2 rounded-lg transition-all ${darkMode
-                  ? 'text-yellow-400 hover:bg-slate-800 hover:text-yellow-300'
-                  : 'text-indigo-600 hover:bg-slate-100 hover:text-indigo-850'
+                  ? 'text-yellow-400 hover:bg-neutral-900 hover:text-yellow-300'
+                  : 'text-indigo-600 hover:bg-slate-100 hover:text-indigo-900'
                 }`}
               title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
@@ -312,7 +312,7 @@ export default function DSATracker() {
             {/* Confirm Reset Open button */}
             <button
               onClick={() => setIsResetModalOpen(true)}
-              className="p-2 rounded-lg text-rose-600 dark:text-rose-450 hover:bg-rose-500/10 transition-colors"
+              className="p-2 rounded-lg text-rose-600 dark:text-rose-400 hover:bg-rose-500/10 transition-colors"
               title="Reset All Progress"
             >
               <Trash2 size={18} />
@@ -327,26 +327,26 @@ export default function DSATracker() {
 
         {/* OVERALL PROGRESS BANNER */}
         <section className={`p-6 rounded-2xl border transition-all duration-300 ${darkMode
-            ? 'bg-slate-900 border-slate-800 shadow-2xl shadow-black/10'
+            ? 'bg-neutral-950 border-neutral-900 shadow-2xl shadow-black/10'
             : 'bg-white border-slate-200/80 shadow-sm'
           }`}>
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
             <div>
               <h3 className="text-base sm:text-lg font-bold">Overall Progress</h3>
-              <p className="text-xs text-slate-500 dark:text-slate-400">
+              <p className="text-xs text-slate-500 dark:text-neutral-400">
                 Your journey through the NeetCode 150 curriculum
               </p>
             </div>
             <div className="text-left sm:text-right">
               <span className="text-2xl font-extrabold text-teal-500 leading-none">
-                {stats.completedCount} <span className="text-sm font-semibold text-slate-450 dark:text-slate-550">/ {stats.totalCount}</span>
+                {stats.completedCount} <span className="text-sm font-semibold text-slate-400 dark:text-neutral-500">/ {stats.totalCount}</span>
               </span>
-              <span className="ml-2 px-2.5 py-1 text-xs font-bold rounded-full bg-teal-500/10 text-teal-500 dark:bg-teal-500/10 dark:text-teal-450">
+              <span className="ml-2 px-2.5 py-1 text-xs font-bold rounded-full bg-teal-500/10 text-teal-500 dark:bg-teal-500/10 dark:text-teal-400">
                 {stats.percentage}% Solved
               </span>
             </div>
           </div>
-          <div className="w-full bg-slate-200 dark:bg-slate-850 rounded-full h-2.5 overflow-hidden">
+          <div className="w-full bg-slate-200 dark:bg-neutral-900 rounded-full h-2.5 overflow-hidden">
             <div
               className="bg-gradient-to-r from-teal-500 to-emerald-500 h-full rounded-full transition-all duration-500 ease-out"
               style={{ width: `${stats.percentage}%` }}
@@ -358,7 +358,7 @@ export default function DSATracker() {
         <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {/* Easy metrics */}
           <div className={`p-5 rounded-2xl border transition-all duration-300 ${darkMode
-              ? 'bg-slate-900 border-slate-800 shadow-2xl shadow-black/10'
+              ? 'bg-neutral-950 border-neutral-900 shadow-2xl shadow-black/10'
               : 'bg-white border-slate-200/80 shadow-sm'
             }`}>
             <div className="flex items-center justify-between mb-2">
@@ -369,10 +369,10 @@ export default function DSATracker() {
             </div>
             <div className="flex justify-between items-baseline mb-3">
               <span className="text-2xl font-extrabold tracking-tight">
-                {stats.diffStats.Easy.completed} <span className="text-sm font-medium text-slate-500">/ {stats.diffStats.Easy.total}</span>
+                {stats.diffStats.Easy.completed} <span className="text-sm font-medium text-slate-500 dark:text-neutral-400">/ {stats.diffStats.Easy.total}</span>
               </span>
             </div>
-            <div className="w-full bg-slate-200 dark:bg-slate-850 rounded-full h-1.5 overflow-hidden">
+            <div className="w-full bg-slate-200 dark:bg-neutral-900 rounded-full h-1.5 overflow-hidden">
               <div
                 className="bg-emerald-500 h-full rounded-full transition-all duration-500"
                 style={{ width: `${stats.diffStats.Easy.total > 0 ? (stats.diffStats.Easy.completed / stats.diffStats.Easy.total) * 100 : 0}%` }}
@@ -382,7 +382,7 @@ export default function DSATracker() {
 
           {/* Medium metrics */}
           <div className={`p-5 rounded-2xl border transition-all duration-300 ${darkMode
-              ? 'bg-slate-900 border-slate-800 shadow-2xl shadow-black/10'
+              ? 'bg-neutral-955 border-neutral-900 shadow-2xl shadow-black/10'
               : 'bg-white border-slate-200/80 shadow-sm'
             }`}>
             <div className="flex items-center justify-between mb-2">
@@ -393,10 +393,10 @@ export default function DSATracker() {
             </div>
             <div className="flex justify-between items-baseline mb-3">
               <span className="text-2xl font-extrabold tracking-tight">
-                {stats.diffStats.Medium.completed} <span className="text-sm font-medium text-slate-500">/ {stats.diffStats.Medium.total}</span>
+                {stats.diffStats.Medium.completed} <span className="text-sm font-medium text-slate-500 dark:text-neutral-400">/ {stats.diffStats.Medium.total}</span>
               </span>
             </div>
-            <div className="w-full bg-slate-200 dark:bg-slate-850 rounded-full h-1.5 overflow-hidden">
+            <div className="w-full bg-slate-200 dark:bg-neutral-900 rounded-full h-1.5 overflow-hidden">
               <div
                 className="bg-amber-500 h-full rounded-full transition-all duration-500"
                 style={{ width: `${stats.diffStats.Medium.total > 0 ? (stats.diffStats.Medium.completed / stats.diffStats.Medium.total) * 100 : 0}%` }}
@@ -406,7 +406,7 @@ export default function DSATracker() {
 
           {/* Hard metrics */}
           <div className={`p-5 rounded-2xl border transition-all duration-300 ${darkMode
-              ? 'bg-slate-900 border-slate-800 shadow-2xl shadow-black/10'
+              ? 'bg-neutral-950 border-neutral-900 shadow-2xl shadow-black/10'
               : 'bg-white border-slate-200/80 shadow-sm'
             }`}>
             <div className="flex items-center justify-between mb-2">
@@ -417,10 +417,10 @@ export default function DSATracker() {
             </div>
             <div className="flex justify-between items-baseline mb-3">
               <span className="text-2xl font-extrabold tracking-tight">
-                {stats.diffStats.Hard.completed} <span className="text-sm font-medium text-slate-500">/ {stats.diffStats.Hard.total}</span>
+                {stats.diffStats.Hard.completed} <span className="text-sm font-medium text-slate-500 dark:text-neutral-400">/ {stats.diffStats.Hard.total}</span>
               </span>
             </div>
-            <div className="w-full bg-slate-200 dark:bg-slate-850 rounded-full h-1.5 overflow-hidden">
+            <div className="w-full bg-slate-200 dark:bg-neutral-900 rounded-full h-1.5 overflow-hidden">
               <div
                 className="bg-rose-500 h-full rounded-full transition-all duration-500"
                 style={{ width: `${stats.diffStats.Hard.total > 0 ? (stats.diffStats.Hard.completed / stats.diffStats.Hard.total) * 100 : 0}%` }}
@@ -431,27 +431,27 @@ export default function DSATracker() {
 
         {/* SEARCH AND FILTER BAR */}
         <section className={`p-4 sm:p-5 rounded-2xl border transition-all duration-300 ${darkMode
-            ? 'bg-slate-900 border-slate-800 shadow-2xl shadow-black/10'
+            ? 'bg-neutral-955 border-neutral-900 shadow-2xl shadow-black/10'
             : 'bg-white border-slate-200/80 shadow-sm'
           }`}>
           <div className="flex flex-col lg:flex-row gap-4 items-center justify-between">
             {/* Search inputs */}
             <div className="relative w-full lg:max-w-md">
-              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-slate-550" size={16} />
+              <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 dark:text-neutral-500" size={16} />
               <input
                 type="text"
                 placeholder="Search matching DSA problems..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 className={`w-full pl-10 pr-4 py-2 text-sm rounded-xl border focus:outline-none focus:ring-2 focus:ring-emerald-500/25 transition-all ${darkMode
-                    ? 'border-slate-800 bg-slate-950 text-slate-50 placeholder-slate-500 focus:border-emerald-500/80'
+                    ? 'border-neutral-800 bg-black text-neutral-55 placeholder-neutral-550 focus:border-emerald-500/80'
                     : 'border-slate-200 bg-slate-50 text-slate-900 placeholder-slate-400 focus:border-emerald-500/80'
                   }`}
               />
               {searchQuery && (
                 <button
                   onClick={() => setSearchQuery('')}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-650 dark:hover:text-slate-200"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600 dark:hover:text-neutral-250"
                 >
                   <X size={14} />
                 </button>
@@ -463,8 +463,8 @@ export default function DSATracker() {
 
               {/* Status Filter Tab Group */}
               <div className="flex flex-col gap-1 w-full sm:w-auto">
-                <span className="text-xxs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Filters</span>
-                <div className={`inline-flex rounded-lg border p-0.5 ${darkMode ? 'border-slate-850 bg-slate-950' : 'border-slate-200 bg-slate-50'
+                <span className="text-xxs font-bold uppercase tracking-widest text-slate-400 dark:text-neutral-500">Filters</span>
+                <div className={`inline-flex rounded-lg border p-0.5 ${darkMode ? 'border-neutral-900 bg-black' : 'border-slate-200 bg-slate-50'
                   }`}>
                   {[
                     { id: 'all', label: 'All' },
@@ -476,10 +476,10 @@ export default function DSATracker() {
                       onClick={() => setActiveFilter(filter.id)}
                       className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all ${activeFilter === filter.id
                           ? darkMode
-                            ? 'bg-indigo-500 text-slate-50 shadow-sm'
+                            ? 'bg-neutral-800 text-neutral-50 shadow-sm'
                             : 'bg-indigo-600 text-white shadow-sm'
                           : darkMode
-                            ? 'text-slate-400 hover:text-slate-250'
+                            ? 'text-neutral-400 hover:text-neutral-200'
                             : 'text-slate-600 hover:text-slate-950'
                         }`}
                     >
@@ -491,8 +491,8 @@ export default function DSATracker() {
 
               {/* Difficulty filter Tab Group */}
               <div className="flex flex-col gap-1 w-full sm:w-auto">
-                <span className="text-xxs font-bold uppercase tracking-widest text-slate-400 dark:text-slate-500">Difficulty</span>
-                <div className={`inline-flex rounded-lg border p-0.5 ${darkMode ? 'border-slate-850 bg-slate-950' : 'border-slate-200 bg-slate-50'
+                <span className="text-xxs font-bold uppercase tracking-widest text-slate-400 dark:text-neutral-500">Difficulty</span>
+                <div className={`inline-flex rounded-lg border p-0.5 ${darkMode ? 'border-neutral-900 bg-black' : 'border-slate-200 bg-slate-50'
                   }`}>
                   {['all', 'Easy', 'Medium', 'Hard'].map((diff) => (
                     <button
@@ -500,11 +500,11 @@ export default function DSATracker() {
                       onClick={() => setDifficultyFilter(diff)}
                       className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all ${difficultyFilter === diff
                           ? darkMode
-                            ? 'bg-indigo-500 text-slate-50 shadow-sm'
+                            ? 'bg-neutral-800 text-neutral-50 shadow-sm'
                             : 'bg-indigo-600 text-white shadow-sm'
                           : darkMode
-                            ? 'text-slate-400 hover:text-slate-250'
-                            : 'text-slate-600 hover:text-slate-950'
+                            ? 'text-neutral-400 hover:text-neutral-200'
+                            : 'text-slate-600 hover:text-slate-955'
                         }`}
                     >
                       {diff}
@@ -518,9 +518,9 @@ export default function DSATracker() {
 
           {/* Active summary counts and clear filters */}
           {(searchQuery || activeFilter !== 'all' || difficultyFilter !== 'all') && (
-            <div className="mt-3.5 pt-3.5 border-t border-slate-200/50 dark:border-slate-850/50 flex items-center justify-between text-xs">
-              <span className="text-slate-500 dark:text-slate-400">
-                Found <strong className="font-bold text-slate-850 dark:text-slate-200">{filteredData.count}</strong> matching problems.
+            <div className="mt-3.5 pt-3.5 border-t border-slate-200/50 dark:border-neutral-900/50 flex items-center justify-between text-xs">
+              <span className="text-slate-500 dark:text-neutral-400">
+                Found <strong className="font-bold text-slate-800 dark:text-neutral-200">{filteredData.count}</strong> matching problems.
               </span>
               <button
                 onClick={() => {
@@ -540,11 +540,11 @@ export default function DSATracker() {
         {/* CATEGORY GRID */}
         <section className="flex flex-col gap-6">
           {filteredData.count === 0 ? (
-            <div className={`text-center py-16 rounded-2xl border transition-all ${darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200/80 shadow-sm'
+            <div className={`text-center py-16 rounded-2xl border transition-all ${darkMode ? 'bg-neutral-950 border-neutral-900' : 'bg-white border-slate-200/80 shadow-sm'
               }`}>
-              <AlertCircle className="mx-auto text-slate-400 dark:text-slate-600 mb-3" size={32} />
+              <AlertCircle className="mx-auto text-slate-400 dark:text-neutral-500 mb-3" size={32} />
               <h3 className="font-bold text-lg">No Matching Problems Found</h3>
-              <p className="text-slate-500 dark:text-slate-400 text-sm mt-1">Try clearing your filters or altering your search text.</p>
+              <p className="text-slate-500 dark:text-neutral-400 text-sm mt-1">Try clearing your filters or altering your search text.</p>
             </div>
           ) : (
             Object.entries(filteredData.data).map(([category, problems]) => {
@@ -557,27 +557,27 @@ export default function DSATracker() {
                 <div
                   key={category}
                   className={`rounded-2xl border overflow-hidden transition-all duration-300 ${darkMode
-                      ? 'bg-slate-900 border-slate-800 shadow-2xl shadow-black/10'
+                      ? 'bg-neutral-950 border-neutral-900 shadow-2xl shadow-black/10'
                       : 'bg-white border-slate-200/80 shadow-sm'
                     }`}
                 >
                   {/* Category Header Click Block */}
                   <div
                     onClick={() => toggleCategory(category)}
-                    className="px-6 py-4 flex items-center justify-between gap-4 cursor-pointer hover:bg-slate-50/50 dark:hover:bg-slate-850/20 transition-colors select-none"
+                    className="px-6 py-4 flex items-center justify-between gap-4 cursor-pointer hover:bg-slate-50/50 dark:hover:bg-neutral-900/40 transition-colors select-none"
                   >
                     <div className="flex-1 min-w-0">
                       <div className="flex flex-wrap items-baseline gap-2 mb-2">
                         <h2 className="text-base font-bold truncate">
                           {category}
                         </h2>
-                        <span className="text-xs font-semibold text-slate-500 dark:text-slate-400 shrink-0">
+                        <span className="text-xs font-semibold text-slate-500 dark:text-neutral-400 shrink-0">
                           ({completedInCategory} / {totalInCategory} Solved)
                         </span>
                       </div>
 
                       {/* Category mini-progress slider bar */}
-                      <div className="w-full max-w-xs bg-slate-200 dark:bg-slate-800 rounded-full h-1.5 overflow-hidden">
+                      <div className="w-full max-w-xs bg-slate-200 dark:bg-neutral-900 rounded-full h-1.5 overflow-hidden">
                         <div
                           className="bg-gradient-to-r from-teal-500 to-emerald-500 h-full rounded-full transition-all duration-500"
                           style={{ width: `${percentCompleted}%` }}
@@ -585,17 +585,17 @@ export default function DSATracker() {
                       </div>
                     </div>
 
-                    <div className="text-slate-400 dark:text-slate-500 p-1.5 hover:bg-slate-100 dark:hover:bg-slate-800 rounded-lg shrink-0">
+                    <div className="text-slate-400 dark:text-neutral-500 p-1.5 hover:bg-slate-100 dark:hover:bg-neutral-900 rounded-lg shrink-0">
                       {isCollapsed ? <ChevronDown size={18} /> : <ChevronUp size={18} />}
                     </div>
                   </div>
 
                   {/* Problem Rows (Accordion collapsed state check) */}
                   {!isCollapsed && (
-                    <div className="border-t border-slate-200/80 dark:border-slate-800/80 overflow-x-auto">
+                    <div className="border-t border-slate-200/80 dark:border-neutral-900 overflow-x-auto">
                       <table className="w-full text-left border-collapse min-w-[560px]">
                         <thead>
-                          <tr className={`text-xxs font-bold uppercase tracking-widest text-slate-500 border-b border-slate-200/80 dark:border-slate-800/80 ${darkMode ? 'bg-slate-800/50' : 'bg-slate-100'
+                          <tr className={`text-xxs font-bold uppercase tracking-widest text-slate-500 border-b border-slate-200/80 dark:border-neutral-900 ${darkMode ? 'bg-neutral-900/30' : 'bg-slate-100'
                             }`}>
                             <th className="py-3 px-5 w-16 text-center">Status</th>
                             <th className="py-3 px-3">Title</th>
@@ -604,7 +604,7 @@ export default function DSATracker() {
                             <th className="py-3 px-5 w-20 text-center">Notes</th>
                           </tr>
                         </thead>
-                        <tbody className="divide-y divide-slate-150 dark:divide-slate-800 text-xs sm:text-sm">
+                        <tbody className="divide-y divide-slate-150 dark:divide-neutral-900 text-xs sm:text-sm">
                           {problems.map((problem) => {
                             const isCompleted = !!progress[problem.title];
                             const hasNotes = !!notes[problem.title];
@@ -614,11 +614,11 @@ export default function DSATracker() {
                             let rowClasses = '';
                             if (isCompleted) {
                               rowClasses = darkMode
-                                ? 'bg-emerald-950/20 text-slate-300'
+                                ? 'bg-emerald-950/10 text-neutral-300'
                                 : 'bg-emerald-50/60 text-slate-700';
                             } else {
                               rowClasses = darkMode
-                                ? 'bg-transparent hover:bg-slate-850/10 text-slate-200'
+                                ? 'bg-transparent hover:bg-neutral-900/10 text-neutral-200'
                                 : 'bg-transparent hover:bg-slate-50/30 text-slate-900';
                             }
 
@@ -634,7 +634,7 @@ export default function DSATracker() {
 
                             return (
                               <React.Fragment key={problem.title}>
-                                <tr className={`transition-colors border-slate-250 dark:border-slate-850 ${rowClasses}`}>
+                                <tr className={`transition-colors border-slate-250 dark:border-neutral-900 ${rowClasses}`}>
 
                                   {/* Checkbox column */}
                                   <td className="py-3.5 px-5 text-center">
@@ -646,7 +646,7 @@ export default function DSATracker() {
                                       {isCompleted ? (
                                         <CheckCircle className="text-emerald-500 fill-emerald-500/10 shrink-0" size={18} />
                                       ) : (
-                                        <Circle className="text-slate-400 dark:text-slate-650 hover:text-slate-650 dark:hover:text-slate-400 shrink-0" size={18} />
+                                        <Circle className="text-slate-400 dark:text-neutral-500 hover:text-slate-600 dark:hover:text-neutral-450 shrink-0" size={18} />
                                       )}
                                     </button>
                                   </td>
@@ -687,7 +687,7 @@ export default function DSATracker() {
                                       target="_blank"
                                       rel="noopener noreferrer"
                                       className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xxs font-semibold transition-all border ${darkMode
-                                          ? 'text-amber-400 bg-amber-500/10 border-amber-500/20 hover:bg-amber-500/20'
+                                          ? 'text-amber-400 bg-amber-500/5 border-amber-500/15 hover:bg-amber-550/15'
                                           : 'text-amber-600 bg-amber-55 border border-amber-200 hover:bg-amber-100'
                                         }`}
                                     >
@@ -704,10 +704,10 @@ export default function DSATracker() {
                                           ? 'bg-indigo-500 text-white border-indigo-500'
                                           : hasNotes
                                             ? darkMode
-                                              ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400 hover:bg-cyan-550/20'
+                                              ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400 hover:bg-cyan-900/20'
                                               : 'bg-cyan-50 border-cyan-200 text-cyan-700 hover:bg-cyan-100'
                                             : darkMode
-                                              ? 'border-slate-800 text-slate-500 hover:border-slate-700 hover:text-slate-300'
+                                              ? 'border-neutral-900 text-neutral-500 hover:border-neutral-700 hover:text-neutral-300'
                                               : 'border-slate-200 text-slate-455 hover:border-slate-350 hover:text-slate-800'
                                         }`}
                                       title={isEditingNotes ? "Close notes" : "Edit notes"}
@@ -720,11 +720,11 @@ export default function DSATracker() {
 
                                 {/* Expanded notes editor container block */}
                                 {isEditingNotes && (
-                                  <tr className={darkMode ? 'bg-slate-950/40' : 'bg-slate-50/50'}>
-                                    <td colSpan="5" className="p-0 border-b border-slate-200/80 dark:border-slate-800/80">
+                                  <tr className={darkMode ? 'bg-neutral-950/40' : 'bg-slate-50/50'}>
+                                    <td colSpan="5" className="p-0 border-b border-slate-200/80 dark:border-neutral-900">
                                       <div className="px-6 sm:px-12 py-4 border-l-2 border-emerald-500 dark:border-emerald-600 space-y-2">
                                         <div className="flex items-center justify-between text-xs">
-                                          <span className="font-semibold text-slate-550 dark:text-slate-400 flex items-center gap-1.5">
+                                          <span className="font-semibold text-slate-550 dark:text-neutral-400 flex items-center gap-1.5">
                                             <BookOpen size={14} className="text-emerald-500" />
                                             Notes &amp; Hints for {problem.title}
                                           </span>
@@ -740,7 +740,7 @@ export default function DSATracker() {
                                             )}
                                             <button
                                               onClick={() => handleToggleNoteEditor(problem.title)}
-                                              className="text-slate-450 hover:text-slate-700 dark:hover:text-slate-200"
+                                              className="text-slate-450 hover:text-slate-700 dark:hover:text-neutral-200"
                                             >
                                               <X size={14} />
                                             </button>
@@ -753,11 +753,11 @@ export default function DSATracker() {
                                           placeholder="Type solution approaches, reminders, or formulas here..."
                                           rows="3"
                                           className={`w-full p-3 text-sm border rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 placeholder-slate-400 font-mono resize-y ${darkMode
-                                              ? 'border-slate-800 bg-slate-950 text-slate-100'
+                                              ? 'border-neutral-800 bg-black text-neutral-100'
                                               : 'border-slate-250 bg-white text-slate-950'
                                             }`}
                                         />
-                                        <span className="text-xxs text-slate-450 dark:text-slate-500 block">
+                                        <span className="text-xxs text-slate-455 dark:text-neutral-500 block">
                                           Notes are auto-saved dynamically on keyboard inputs. Click outside to focus lock.
                                         </span>
                                       </div>
@@ -781,33 +781,33 @@ export default function DSATracker() {
       </main>
 
       {/* FOOTER */}
-      <footer className={`border-t py-8 mt-12 transition-all duration-300 text-center space-y-1.5 text-xs text-slate-500 dark:text-slate-400 ${darkMode ? 'border-slate-850 bg-slate-950' : 'border-slate-200 bg-white'
+      <footer className={`border-t py-8 mt-12 transition-all duration-300 text-center space-y-1.5 text-xs text-slate-500 dark:text-neutral-400 ${darkMode ? 'border-neutral-900 bg-black' : 'border-slate-200 bg-white'
         }`}>
-        <p className="font-semibold text-slate-700 dark:text-slate-350">
+        <p className="font-semibold text-slate-700 dark:text-neutral-350">
           Rishi 150 Sheet Tracker
         </p>
 
         <div className="pt-2 text-xxs text-slate-400 dark:text-slate-600 flex flex-col items-center gap-1 font-medium">
-          <span className="text-slate-600 dark:text-slate-350">Created with ❤️ by RISHI</span>
+          <span className="text-slate-600 dark:text-neutral-350">Created with ❤️ by RISHI</span>
 
         </div>
       </footer>
 
       {/* DYNAMIC CONFIRMATION MODAL */}
       {isResetModalOpen && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/60 backdrop-blur-xs transition-opacity duration-300">
-          <div className={`border rounded-2xl max-w-md w-full p-6 shadow-xl space-y-4 animate-in fade-in zoom-in-95 duration-200 ${darkMode ? 'bg-slate-900 border-slate-800 text-slate-100' : 'bg-white border-slate-200 text-slate-900'
+        <div className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/60 backdrop-blur-xs transition-opacity duration-300">
+          <div className={`border rounded-2xl max-w-md w-full p-6 shadow-xl space-y-4 animate-in fade-in zoom-in-95 duration-200 ${darkMode ? 'bg-neutral-950 border-neutral-900 text-neutral-100' : 'bg-white border-slate-200 text-slate-900'
             }`}>
 
             <div className="flex items-start gap-3.5">
-              <div className="p-2.5 bg-rose-500/10 text-rose-600 dark:text-rose-400 rounded-full shrink-0">
+              <div className="p-2.5 bg-rose-500/10 text-rose-600 dark:text-rose-450 rounded-full shrink-0">
                 <AlertCircle size={24} />
               </div>
               <div className="space-y-1">
                 <h3 className="text-base sm:text-lg font-bold">
                   Reset Progress &amp; Notes?
                 </h3>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-450 leading-relaxed">
+                <p className="text-xs sm:text-sm text-slate-500 dark:text-neutral-400 leading-relaxed">
                   This will permanently clear all your 151 checkboxes and reset any typed hints or approaches. This cannot be undone.
                 </p>
               </div>
@@ -821,7 +821,7 @@ export default function DSATracker() {
               <button
                 onClick={() => setIsResetModalOpen(false)}
                 className={`px-4 py-2 text-xs font-bold uppercase tracking-wider rounded-lg border transition-colors ${darkMode
-                    ? 'border-slate-800 text-slate-300 hover:bg-slate-800'
+                    ? 'border-neutral-800 text-neutral-300 hover:bg-neutral-900'
                     : 'border-slate-200 text-slate-700 hover:bg-slate-100'
                   }`}
               >

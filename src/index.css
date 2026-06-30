@@ -20,7 +20,7 @@ body {
 }
 
 .dark ::-webkit-scrollbar-thumb {
-  background: #171c22;
+  background: #262626;
   border-radius: 9999px;
 }
 
@@ -30,7 +30,7 @@ body {
 }
 
 .dark ::-webkit-scrollbar-thumb:hover {
-  background: #000000;
+  background: #404040;
 }
 
 ::-webkit-scrollbar-thumb:hover {
