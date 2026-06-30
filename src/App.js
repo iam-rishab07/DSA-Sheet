@@ -12,7 +12,6 @@ import {
   BookOpen,
   Trash2,
   Check,
-  TrendingUp,
   AlertCircle,
   X
 } from 'lucide-react';
@@ -252,12 +251,10 @@ export default function DSATracker() {
 
           {/* Logo Title Block */}
           <div className="flex items-center gap-3">
-            <div className="p-2 bg-gradient-to-tr from-teal-500 to-emerald-500 rounded-lg text-white shadow-md">
-              <TrendingUp size={20} />
-            </div>
+            <img src="/logo.png" alt="Rishi DSA Sheet Logo" className="w-9 h-9 rounded-lg object-cover shadow-md border border-emerald-500/20" />
             <div>
               <h1 className="text-lg font-bold tracking-tight bg-gradient-to-r from-teal-500 to-emerald-500 bg-clip-text text-transparent leading-none">
-                Rishi 150 Sheet
+                Rishi DSA Sheet
               </h1>
               <p className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-neutral-400 font-bold mt-0.5">
                 DSA Progress Tracker
@@ -929,7 +926,7 @@ export default function DSATracker() {
       <footer className={`border-t py-8 mt-12 transition-all duration-300 text-center space-y-1.5 text-xs text-slate-500 dark:text-neutral-400 ${darkMode ? 'border-neutral-900 bg-black' : 'border-slate-200 bg-white'
         }`}>
         <p className="font-semibold text-slate-700 dark:text-neutral-350">
-          Rishi 150 Sheet Tracker
+          Rishi DSA Sheet Tracker
         </p>
 
         <div className="pt-2 text-xxs text-slate-400 dark:text-slate-600 flex flex-col items-center gap-1 font-medium">
