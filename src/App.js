@@ -66,6 +66,12 @@ export default function DSATracker() {
     } else {
       document.documentElement.classList.remove('dark');
     }
+
+    // Update browser tab favicon dynamically
+    const favicon = document.getElementById('favicon');
+    if (favicon) {
+      favicon.href = darkMode ? '/logo_dark_theme.png' : '/logo_light_theme.png';
+    }
   }, [darkMode]);
 
   // --- PERSISTENCE EFFECTS ---
@@ -251,10 +257,14 @@ export default function DSATracker() {
 
           {/* Logo Title Block */}
           <div className="flex items-center gap-3">
-            <img src="/logo.png" alt="Rishi DSA Sheet Logo" className="w-9 h-9 rounded-lg object-cover shadow-md border border-emerald-500/20" />
+            <img 
+              src={darkMode ? "/logo_dark_theme.png" : "/logo_light_theme.png"} 
+              alt="KAIZEN DSA Sheet Logo" 
+              className="w-9 h-9 rounded-lg object-cover shadow-md border border-emerald-550/10" 
+            />
             <div>
               <h1 className="text-lg font-bold tracking-tight bg-gradient-to-r from-teal-500 to-emerald-500 bg-clip-text text-transparent leading-none">
-                Rishi DSA Sheet
+                KAIZEN DSA SHEET
               </h1>
               <p className="text-[10px] uppercase tracking-wider text-slate-500 dark:text-neutral-400 font-bold mt-0.5">
                 DSA Progress Tracker
@@ -923,14 +933,89 @@ export default function DSATracker() {
       </main>
 
       {/* FOOTER */}
-      <footer className={`border-t py-8 mt-12 transition-all duration-300 text-center space-y-1.5 text-xs text-slate-500 dark:text-neutral-400 ${darkMode ? 'border-neutral-900 bg-black' : 'border-slate-200 bg-white'
-        }`}>
-        <p className="font-semibold text-slate-700 dark:text-neutral-350">
-          Rishi DSA Sheet Tracker
-        </p>
+      <footer className={`border-t mt-16 pt-12 pb-8 transition-all duration-300 ${
+        darkMode ? 'border-neutral-900 bg-black text-neutral-400' : 'border-slate-200 bg-white text-slate-500'
+      }`}>
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
+          
+          {/* Great Banner Image */}
+          <div className="overflow-hidden rounded-2xl border border-neutral-200 dark:border-neutral-900 shadow-lg">
+            <img 
+              src="/footer_banner.png" 
+              alt="KAIZEN Philosophy: Coding, Development, Concepts, Growth - One Step Everyday" 
+              className="w-full h-auto object-cover max-h-[220px]" 
+            />
+          </div>
 
-        <div className="pt-2 text-xxs text-slate-400 dark:text-slate-600 flex flex-col items-center gap-1 font-medium">
-          <span className="text-slate-600 dark:text-neutral-350">Created with ❤️ by RISHI</span>
+          {/* Grid Layout */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 pt-4 text-left">
+            
+            {/* Column 1: App info */}
+            <div className="space-y-4">
+              <div className="flex items-center gap-3">
+                <img 
+                  src={darkMode ? "/logo_dark_theme.png" : "/logo_light_theme.png"} 
+                  alt="KAIZEN Logo" 
+                  className="w-8 h-8 rounded-lg object-cover border border-emerald-500/20" 
+                />
+                <span className={`font-extrabold text-sm sm:text-base tracking-wider ${
+                  darkMode ? 'text-neutral-100' : 'text-slate-800'
+                }`}>
+                  KAIZEN DSA SHEET
+                </span>
+              </div>
+              <p className="text-xs leading-relaxed max-w-sm">
+                A premium, interactive curriculum tracker designed to help developers systematically practice, refine, and master critical coding concepts and algorithm designs.
+              </p>
+            </div>
+
+            {/* Column 2: Philosophy */}
+            <div className="space-y-4">
+              <h4 className={`text-xs font-bold uppercase tracking-widest ${
+                darkMode ? 'text-neutral-200' : 'text-slate-700'
+              }`}>
+                The Kaizen Way
+              </h4>
+              <ul className="space-y-2 text-xs font-semibold">
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  <span>Learn: Master patterns daily.</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  <span>Improve: Solve problems systematically.</span>
+                </li>
+                <li className="flex items-center gap-2">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                  <span>Grow: Elevate engineering careers.</span>
+                </li>
+              </ul>
+            </div>
+
+            {/* Column 3: Quote & Statement */}
+            <div className="space-y-4">
+              <h4 className={`text-xs font-bold uppercase tracking-widest ${
+                darkMode ? 'text-neutral-200' : 'text-slate-700'
+              }`}>
+                Founder's Vision
+              </h4>
+              <p className="text-xs italic leading-relaxed">
+                "Continuous improvement is better than delayed perfection. One step everyday leads to the peak."
+              </p>
+              <p className="text-xs font-bold text-emerald-500">
+                — Vrushabh Gorivale, Founder &amp; CEO of KAIZEN
+              </p>
+            </div>
+
+          </div>
+
+          {/* Copyright signature */}
+          <div className="pt-8 border-t border-neutral-200/50 dark:border-neutral-900/50 flex flex-col sm:flex-row items-center justify-between gap-4 text-xxs text-neutral-500 font-medium">
+            <span>&copy; 2026 KAIZEN. All rights reserved.</span>
+            <span className={darkMode ? 'text-neutral-405' : 'text-slate-600'}>
+              Created with ❤️ under the vision of Vrushabh Gorivale
+            </span>
+          </div>
 
         </div>
       </footer>
