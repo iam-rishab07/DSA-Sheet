@@ -943,7 +943,7 @@ export default function DSATracker() {
             <img 
               src="/footer_banner.png" 
               alt="KAIZEN Philosophy: Coding, Development, Concepts, Growth - One Step Everyday" 
-              className="w-full h-auto object-cover max-h-[220px]" 
+              className="w-full h-auto object-contain" 
             />
           </div>
 
