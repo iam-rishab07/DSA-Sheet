@@ -275,47 +275,47 @@ export default function DSATracker() {
           </div>
 
           {/* Theme toggles and collapse buttons */}
-          <div className="flex items-center gap-2 shrink-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 shrink-0">
             <button
               onClick={expandAll}
-              className={`px-2.5 py-1 text-xxs font-bold uppercase rounded-md tracking-wider transition-colors ${darkMode
+              className={`px-1.5 py-1 text-[10px] sm:px-2.5 sm:py-1 sm:text-xxs font-bold uppercase rounded-md tracking-wider transition-colors ${darkMode
                   ? 'text-neutral-400 hover:bg-neutral-900 hover:text-white'
                   : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                 }`}
             >
-              Expand All
+              Expand<span className="hidden sm:inline"> All</span>
             </button>
             <button
               onClick={collapseAll}
-              className={`px-2.5 py-1 text-xxs font-bold uppercase rounded-md tracking-wider transition-colors ${darkMode
+              className={`px-1.5 py-1 text-[10px] sm:px-2.5 sm:py-1 sm:text-xxs font-bold uppercase rounded-md tracking-wider transition-colors ${darkMode
                   ? 'text-neutral-400 hover:bg-neutral-900 hover:text-white'
                   : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'
                 }`}
             >
-              Collapse All
+              Collapse<span className="hidden sm:inline"> All</span>
             </button>
 
-            <div className="h-4 w-px bg-slate-200 dark:bg-neutral-900 mx-1"></div>
+            <div className="h-4 w-px bg-slate-200 dark:bg-neutral-900 mx-0.5 sm:mx-1"></div>
 
             {/* Sun/Moon Toggle Switch */}
             <button
               onClick={() => setDarkMode(!darkMode)}
-              className={`p-2 rounded-lg transition-all ${darkMode
+              className={`p-1.5 sm:p-2 rounded-lg transition-all ${darkMode
                   ? 'text-yellow-400 hover:bg-neutral-900 hover:text-yellow-300'
                   : 'text-indigo-600 hover:bg-slate-100 hover:text-indigo-900'
                 }`}
               title={darkMode ? 'Switch to Light Mode' : 'Switch to Dark Mode'}
             >
-              {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+              {darkMode ? <Sun size={16} className="sm:w-[18px] sm:h-[18px]" /> : <Moon size={16} className="sm:w-[18px] sm:h-[18px]" />}
             </button>
 
             {/* Confirm Reset Open button */}
             <button
               onClick={() => setIsResetModalOpen(true)}
-              className="p-2 rounded-lg text-rose-600 dark:text-rose-400 hover:bg-rose-500/10 transition-colors"
+              className="p-1.5 sm:p-2 rounded-lg text-rose-600 dark:text-rose-400 hover:bg-rose-500/10 transition-colors"
               title="Reset All Progress"
             >
-              <Trash2 size={18} />
+              <Trash2 size={16} className="sm:w-[18px] sm:h-[18px]" />
             </button>
           </div>
 
@@ -355,7 +355,7 @@ export default function DSATracker() {
         </section>
 
         {/* STATS PANEL SUMMARY */}
-        <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <section className="grid grid-cols-1 sm:grid-cols-3 gap-6">
           {/* Easy metrics */}
           <div className={`p-5 rounded-2xl border transition-all duration-300 ${darkMode
               ? 'bg-neutral-950 border-neutral-900 shadow-2xl shadow-black/10'
@@ -592,183 +592,328 @@ export default function DSATracker() {
 
                   {/* Problem Rows (Accordion collapsed state check) */}
                   {!isCollapsed && (
-                    <div className="border-t border-slate-200/80 dark:border-neutral-900 overflow-x-auto">
-                      <table className="w-full text-left border-collapse min-w-[560px]">
-                        <thead>
-                          <tr className={`text-xxs font-bold uppercase tracking-widest text-slate-500 border-b border-slate-200/80 dark:border-neutral-900 ${darkMode ? 'bg-neutral-900/30' : 'bg-slate-100'
-                            }`}>
-                            <th className="py-3 px-5 w-16 text-center">Status</th>
-                            <th className="py-3 px-3">Title</th>
-                            <th className="py-3 px-3 w-24 text-center">Difficulty</th>
-                            <th className="py-3 px-3 w-28 text-center">LeetCode</th>
-                            <th className="py-3 px-5 w-20 text-center">Notes</th>
-                          </tr>
-                        </thead>
-                        <tbody className="divide-y divide-slate-150 dark:divide-neutral-900 text-xs sm:text-sm">
-                          {problems.map((problem) => {
-                            const isCompleted = !!progress[problem.title];
-                            const hasNotes = !!notes[problem.title];
-                            const isEditingNotes = activeNoteEditing === problem.title;
+                    <div className="border-t border-slate-200/80 dark:border-neutral-900">
+                      
+                      {/* TABLE VIEW (Tablet & Desktop) */}
+                      <div className="hidden sm:block overflow-x-auto">
+                        <table className="w-full text-left border-collapse min-w-[560px]">
+                          <thead>
+                            <tr className={`text-xxs font-bold uppercase tracking-widest text-slate-500 border-b border-slate-200/80 dark:border-neutral-900 ${darkMode ? 'bg-neutral-900/30' : 'bg-slate-100'
+                              }`}>
+                              <th className="py-3 px-5 w-16 text-center">Status</th>
+                              <th className="py-3 px-3">Title</th>
+                              <th className="py-3 px-3 w-24 text-center">Difficulty</th>
+                              <th className="py-3 px-3 w-28 text-center">LeetCode</th>
+                              <th className="py-3 px-5 w-20 text-center">Notes</th>
+                            </tr>
+                          </thead>
+                          <tbody className="divide-y divide-slate-150 dark:divide-neutral-900 text-xs sm:text-sm">
+                            {problems.map((problem) => {
+                              const isCompleted = !!progress[problem.title];
+                              const hasNotes = !!notes[problem.title];
+                              const isEditingNotes = activeNoteEditing === problem.title;
 
-                            // Row color configurations dynamically derived
-                            let rowClasses = '';
-                            if (isCompleted) {
-                              rowClasses = darkMode
-                                ? 'bg-emerald-950/10 text-neutral-300'
-                                : 'bg-emerald-50/60 text-slate-700';
-                            } else {
-                              rowClasses = darkMode
-                                ? 'bg-transparent hover:bg-neutral-900/10 text-neutral-200'
-                                : 'bg-transparent hover:bg-slate-50/30 text-slate-900';
-                            }
+                              // Row color configurations dynamically derived
+                              let rowClasses = '';
+                              if (isCompleted) {
+                                rowClasses = darkMode
+                                  ? 'bg-emerald-955/10 text-neutral-300'
+                                  : 'bg-emerald-50/60 text-slate-700';
+                              } else {
+                                rowClasses = darkMode
+                                  ? 'bg-transparent hover:bg-neutral-900/10 text-neutral-200'
+                                  : 'bg-transparent hover:bg-slate-50/30 text-slate-900';
+                              }
 
-                            // Difficulty tag styles
-                            let diffClasses = '';
-                            if (problem.difficulty === 'Easy') {
-                              diffClasses = 'bg-emerald-500/10 text-emerald-500 border-emerald-550/10';
-                            } else if (problem.difficulty === 'Medium') {
-                              diffClasses = 'bg-amber-500/10 text-amber-500 border-amber-550/10';
-                            } else {
-                              diffClasses = 'bg-rose-500/10 text-rose-500 border-rose-550/10';
-                            }
+                              // Difficulty tag styles
+                              let diffClasses = '';
+                              if (problem.difficulty === 'Easy') {
+                                diffClasses = 'bg-emerald-500/10 text-emerald-500 border-emerald-550/10';
+                              } else if (problem.difficulty === 'Medium') {
+                                diffClasses = 'bg-amber-500/10 text-amber-500 border-amber-550/10';
+                              } else {
+                                diffClasses = 'bg-rose-500/10 text-rose-500 border-rose-550/10';
+                              }
 
-                            return (
-                              <React.Fragment key={problem.title}>
-                                <tr className={`transition-colors border-slate-250 dark:border-neutral-900 ${rowClasses}`}>
+                              return (
+                                <React.Fragment key={problem.title}>
+                                  <tr className={`transition-colors border-slate-250 dark:border-neutral-900 ${rowClasses}`}>
 
-                                  {/* Checkbox column */}
-                                  <td className="py-3.5 px-5 text-center">
-                                    <button
-                                      onClick={() => toggleProblem(problem.title)}
-                                      className="inline-flex focus:outline-none transition-transform active:scale-90"
-                                      title={isCompleted ? "Mark as Incomplete" : "Mark as Completed"}
-                                    >
-                                      {isCompleted ? (
-                                        <CheckCircle className="text-emerald-500 fill-emerald-500/10 shrink-0" size={18} />
-                                      ) : (
-                                        <Circle className="text-slate-400 dark:text-neutral-500 hover:text-slate-600 dark:hover:text-neutral-450 shrink-0" size={18} />
-                                      )}
-                                    </button>
-                                  </td>
+                                    {/* Checkbox column */}
+                                    <td className="py-3.5 px-5 text-center">
+                                      <button
+                                        onClick={() => toggleProblem(problem.title)}
+                                        className="inline-flex focus:outline-none transition-transform active:scale-90"
+                                        title={isCompleted ? "Mark as Incomplete" : "Mark as Completed"}
+                                      >
+                                        {isCompleted ? (
+                                          <CheckCircle className="text-emerald-500 fill-emerald-500/10 shrink-0" size={18} />
+                                        ) : (
+                                          <Circle className="text-slate-400 dark:text-neutral-500 hover:text-slate-600 dark:hover:text-neutral-450 shrink-0" size={18} />
+                                        )}
+                                      </button>
+                                    </td>
 
-                                  {/* Title column */}
-                                  <td className="py-3.5 px-3 font-medium">
-                                    <div className="flex items-center gap-2">
-                                      <span className={`${isCompleted ? 'line-through text-slate-500' : ''}`}>
-                                        {problem.title}
+                                    {/* Title column */}
+                                    <td className="py-3.5 px-3 font-medium">
+                                      <div className="flex items-center gap-2">
+                                        <span className={`${isCompleted ? 'line-through text-slate-500' : ''}`}>
+                                          {problem.title}
+                                        </span>
+                                        {hasNotes && (
+                                          <span
+                                            onClick={() => handleToggleNoteEditor(problem.title)}
+                                            className={`p-0.5 px-1.5 rounded cursor-pointer transition-all text-xxs font-bold flex items-center gap-0.5 shrink-0 ${darkMode
+                                                ? 'bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20'
+                                                : 'bg-cyan-100 text-cyan-800 hover:bg-cyan-200'
+                                              }`}
+                                            title="View approach notes"
+                                          >
+                                            <BookOpen size={10} />
+                                            Notes
+                                          </span>
+                                        )}
+                                      </div>
+                                    </td>
+
+                                    {/* Difficulty badge */}
+                                    <td className="py-3.5 px-3 text-center">
+                                      <span className={`inline-block px-2 py-0.5 text-xxs font-semibold border rounded-full ${diffClasses}`}>
+                                        {problem.difficulty}
+                                      </span>
+                                    </td>
+
+                                    {/* LeetCode link badges */}
+                                    <td className="py-3.5 px-3 text-center">
+                                      <a
+                                        href={getLeetCodeUrl(problem.slug)}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xxs font-semibold transition-all border ${darkMode
+                                            ? 'text-amber-400 bg-amber-500/5 border-amber-500/15 hover:bg-amber-550/15'
+                                            : 'text-amber-600 bg-amber-55 border border-amber-200 hover:bg-amber-100'
+                                          }`}
+                                      >
+                                        <span>Practice</span>
+                                        <ExternalLink size={10} />
+                                      </a>
+                                    </td>
+
+                                    {/* Notes expansion toggle */}
+                                    <td className="py-3.5 px-5 text-center">
+                                      <button
+                                        onClick={() => handleToggleNoteEditor(problem.title)}
+                                        className={`p-1.5 rounded-lg border transition-all ${isEditingNotes
+                                            ? 'bg-indigo-500 text-white border-indigo-500'
+                                            : hasNotes
+                                              ? darkMode
+                                                ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400 hover:bg-cyan-900/20'
+                                                : 'bg-cyan-50 border-cyan-200 text-cyan-700 hover:bg-cyan-100'
+                                              : darkMode
+                                                ? 'border-neutral-900 text-neutral-500 hover:border-neutral-700 hover:text-neutral-300'
+                                                : 'border-slate-200 text-slate-455 hover:border-slate-350 hover:text-slate-800'
+                                          }`}
+                                        title={isEditingNotes ? "Close notes" : "Edit notes"}
+                                      >
+                                        <BookOpen size={14} />
+                                      </button>
+                                    </td>
+
+                                  </tr>
+
+                                  {/* Expanded notes editor container block */}
+                                  {isEditingNotes && (
+                                    <tr className={darkMode ? 'bg-neutral-950/40' : 'bg-slate-50/50'}>
+                                      <td colSpan="5" className="p-0 border-b border-slate-200/80 dark:border-neutral-900">
+                                        <div className="px-6 sm:px-12 py-4 border-l-2 border-emerald-500 dark:border-emerald-600 space-y-2">
+                                          <div className="flex items-center justify-between text-xs">
+                                            <span className="font-semibold text-slate-550 dark:text-neutral-400 flex items-center gap-1.5">
+                                              <BookOpen size={14} className="text-emerald-500" />
+                                              Notes &amp; Hints for {problem.title}
+                                            </span>
+                                            <div className="flex items-center gap-3">
+                                              {saveStatus[problem.title] === 'saving' && (
+                                                <span className="text-slate-500 animate-pulse font-medium">Auto-saving...</span>
+                                              )}
+                                              {saveStatus[problem.title] === 'saved' && (
+                                                <span className="text-emerald-500 font-bold flex items-center gap-1">
+                                                  <Check size={12} />
+                                                  Saved!
+                                                </span>
+                                              )}
+                                              <button
+                                                onClick={() => handleToggleNoteEditor(problem.title)}
+                                                className="text-slate-450 hover:text-slate-700 dark:hover:text-neutral-200"
+                                              >
+                                                <X size={14} />
+                                              </button>
+                                            </div>
+                                          </div>
+                                          <textarea
+                                            value={noteDrafts[problem.title] ?? ""}
+                                            onChange={(e) => handleNoteChange(problem.title, e.target.value)}
+                                            onBlur={() => saveNote(problem.title)}
+                                            placeholder="Type solution approaches, reminders, or formulas here..."
+                                            rows="3"
+                                            className={`w-full p-3 text-sm border rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 placeholder-slate-400 font-mono resize-y ${darkMode
+                                                ? 'border-neutral-800 bg-black text-neutral-100'
+                                                : 'border-slate-250 bg-white text-slate-950'
+                                              }`}
+                                          />
+                                          <span className="text-xxs text-slate-455 dark:text-neutral-500 block">
+                                            Notes are auto-saved dynamically on keyboard inputs. Click outside to focus lock.
+                                          </span>
+                                        </div>
+                                      </td>
+                                    </tr>
+                                  )}
+                                </React.Fragment>
+                              );
+                            })}
+                          </tbody>
+                        </table>
+                      </div>
+
+                      {/* LIST VIEW (Mobile) */}
+                      <div className="block sm:hidden divide-y divide-slate-150 dark:divide-neutral-900">
+                        {problems.map((problem) => {
+                          const isCompleted = !!progress[problem.title];
+                          const hasNotes = !!notes[problem.title];
+                          const isEditingNotes = activeNoteEditing === problem.title;
+
+                          // Container class derivation
+                          let rowClasses = '';
+                          if (isCompleted) {
+                            rowClasses = darkMode
+                              ? 'bg-emerald-950/5 text-neutral-350'
+                              : 'bg-emerald-50/30 text-slate-700';
+                          } else {
+                            rowClasses = darkMode
+                              ? 'bg-transparent text-neutral-200'
+                              : 'bg-transparent text-slate-900';
+                          }
+
+                          // Difficulty tag styles
+                          let diffClasses = '';
+                          if (problem.difficulty === 'Easy') {
+                            diffClasses = 'bg-emerald-500/10 text-emerald-500 border-emerald-550/10';
+                          } else if (problem.difficulty === 'Medium') {
+                            diffClasses = 'bg-amber-500/10 text-amber-500 border-amber-550/10';
+                          } else {
+                            diffClasses = 'bg-rose-500/10 text-rose-500 border-rose-550/10';
+                          }
+
+                          return (
+                            <div key={problem.title} className={`p-4 space-y-3 transition-colors ${rowClasses}`}>
+                              <div className="flex items-center justify-between gap-3">
+                                {/* Left: Checkbox + Title */}
+                                <div className="flex items-center gap-3 min-w-0">
+                                  <button
+                                    onClick={() => toggleProblem(problem.title)}
+                                    className="focus:outline-none transition-transform active:scale-90 shrink-0"
+                                    title={isCompleted ? "Mark as Incomplete" : "Mark as Completed"}
+                                  >
+                                    {isCompleted ? (
+                                      <CheckCircle className="text-emerald-500 fill-emerald-500/10" size={20} />
+                                    ) : (
+                                      <Circle className="text-slate-400 dark:text-neutral-500 hover:text-slate-600 dark:hover:text-neutral-450" size={20} />
+                                    )}
+                                  </button>
+                                  <div className="min-w-0">
+                                    <div className={`font-semibold text-sm ${isCompleted ? 'line-through text-slate-500 dark:text-neutral-500' : ''}`}>
+                                      {problem.title}
+                                    </div>
+                                    <div className="flex items-center gap-2 mt-1.5">
+                                      <span className={`inline-block px-2 py-0.5 text-[9px] font-semibold border rounded-full ${diffClasses}`}>
+                                        {problem.difficulty}
                                       </span>
                                       {hasNotes && (
                                         <span
                                           onClick={() => handleToggleNoteEditor(problem.title)}
-                                          className={`p-0.5 px-1.5 rounded cursor-pointer transition-all text-xxs font-bold flex items-center gap-0.5 shrink-0 ${darkMode
+                                          className={`p-0.5 px-1.5 rounded cursor-pointer transition-all text-[9px] font-bold flex items-center gap-0.5 shrink-0 ${darkMode
                                               ? 'bg-cyan-500/10 text-cyan-400 hover:bg-cyan-500/20'
                                               : 'bg-cyan-100 text-cyan-800 hover:bg-cyan-200'
                                             }`}
-                                          title="View approach notes"
                                         >
-                                          <BookOpen size={10} />
+                                          <BookOpen size={9} />
                                           Notes
                                         </span>
                                       )}
                                     </div>
-                                  </td>
+                                  </div>
+                                </div>
 
-                                  {/* Difficulty badge */}
-                                  <td className="py-3.5 px-3 text-center">
-                                    <span className={`inline-block px-2 py-0.5 text-xxs font-semibold border rounded-full ${diffClasses}`}>
-                                      {problem.difficulty}
+                                {/* Right: Buttons */}
+                                <div className="flex items-center gap-2 shrink-0">
+                                  <a
+                                    href={getLeetCodeUrl(problem.slug)}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className={`p-2 rounded-lg transition-all border ${darkMode
+                                        ? 'text-amber-400 bg-amber-500/5 border-amber-500/15 hover:bg-amber-550/15'
+                                        : 'text-amber-600 bg-amber-55 border border-amber-200 hover:bg-amber-100'
+                                      }`}
+                                    title="Practice on LeetCode"
+                                  >
+                                    <ExternalLink size={14} />
+                                  </a>
+                                  <button
+                                    onClick={() => handleToggleNoteEditor(problem.title)}
+                                    className={`p-2 rounded-lg border transition-all ${isEditingNotes
+                                        ? 'bg-indigo-500 text-white border-indigo-500'
+                                        : hasNotes
+                                          ? darkMode
+                                            ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400 hover:bg-cyan-900/20'
+                                            : 'bg-cyan-50 border-cyan-200 text-cyan-700 hover:bg-cyan-100'
+                                          : darkMode
+                                            ? 'border-neutral-900 text-neutral-500 hover:border-neutral-700 hover:text-neutral-350'
+                                            : 'border-slate-200 text-slate-455 hover:border-slate-350 hover:text-slate-800'
+                                      }`}
+                                    title={isEditingNotes ? "Close notes" : "Edit notes"}
+                                  >
+                                    <BookOpen size={14} />
+                                  </button>
+                                </div>
+                              </div>
+
+                              {/* Mobile Note Editor */}
+                              {isEditingNotes && (
+                                <div className={`pt-2 border-t border-slate-200/50 dark:border-neutral-900 space-y-2`}>
+                                  <div className="flex items-center justify-between text-xs">
+                                    <span className="font-semibold text-slate-550 dark:text-neutral-450 flex items-center gap-1.5">
+                                      <BookOpen size={12} className="text-emerald-500" />
+                                      Notes &amp; Hints
                                     </span>
-                                  </td>
-
-                                  {/* LeetCode link badges */}
-                                  <td className="py-3.5 px-3 text-center">
-                                    <a
-                                      href={getLeetCodeUrl(problem.slug)}
-                                      target="_blank"
-                                      rel="noopener noreferrer"
-                                      className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xxs font-semibold transition-all border ${darkMode
-                                          ? 'text-amber-400 bg-amber-500/5 border-amber-500/15 hover:bg-amber-550/15'
-                                          : 'text-amber-600 bg-amber-55 border border-amber-200 hover:bg-amber-100'
-                                        }`}
-                                    >
-                                      <span>Practice</span>
-                                      <ExternalLink size={10} />
-                                    </a>
-                                  </td>
-
-                                  {/* Notes expansion toggle */}
-                                  <td className="py-3.5 px-5 text-center">
-                                    <button
-                                      onClick={() => handleToggleNoteEditor(problem.title)}
-                                      className={`p-1.5 rounded-lg border transition-all ${isEditingNotes
-                                          ? 'bg-indigo-500 text-white border-indigo-500'
-                                          : hasNotes
-                                            ? darkMode
-                                              ? 'bg-cyan-500/10 border-cyan-500/20 text-cyan-400 hover:bg-cyan-900/20'
-                                              : 'bg-cyan-50 border-cyan-200 text-cyan-700 hover:bg-cyan-100'
-                                            : darkMode
-                                              ? 'border-neutral-900 text-neutral-500 hover:border-neutral-700 hover:text-neutral-300'
-                                              : 'border-slate-200 text-slate-455 hover:border-slate-350 hover:text-slate-800'
-                                        }`}
-                                      title={isEditingNotes ? "Close notes" : "Edit notes"}
-                                    >
-                                      <BookOpen size={14} />
-                                    </button>
-                                  </td>
-
-                                </tr>
-
-                                {/* Expanded notes editor container block */}
-                                {isEditingNotes && (
-                                  <tr className={darkMode ? 'bg-neutral-950/40' : 'bg-slate-50/50'}>
-                                    <td colSpan="5" className="p-0 border-b border-slate-200/80 dark:border-neutral-900">
-                                      <div className="px-6 sm:px-12 py-4 border-l-2 border-emerald-500 dark:border-emerald-600 space-y-2">
-                                        <div className="flex items-center justify-between text-xs">
-                                          <span className="font-semibold text-slate-550 dark:text-neutral-400 flex items-center gap-1.5">
-                                            <BookOpen size={14} className="text-emerald-500" />
-                                            Notes &amp; Hints for {problem.title}
-                                          </span>
-                                          <div className="flex items-center gap-3">
-                                            {saveStatus[problem.title] === 'saving' && (
-                                              <span className="text-slate-500 animate-pulse font-medium">Auto-saving...</span>
-                                            )}
-                                            {saveStatus[problem.title] === 'saved' && (
-                                              <span className="text-emerald-500 font-bold flex items-center gap-1">
-                                                <Check size={12} />
-                                                Saved!
-                                              </span>
-                                            )}
-                                            <button
-                                              onClick={() => handleToggleNoteEditor(problem.title)}
-                                              className="text-slate-450 hover:text-slate-700 dark:hover:text-neutral-200"
-                                            >
-                                              <X size={14} />
-                                            </button>
-                                          </div>
-                                        </div>
-                                        <textarea
-                                          value={noteDrafts[problem.title] ?? ""}
-                                          onChange={(e) => handleNoteChange(problem.title, e.target.value)}
-                                          onBlur={() => saveNote(problem.title)}
-                                          placeholder="Type solution approaches, reminders, or formulas here..."
-                                          rows="3"
-                                          className={`w-full p-3 text-sm border rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 placeholder-slate-400 font-mono resize-y ${darkMode
-                                              ? 'border-neutral-800 bg-black text-neutral-100'
-                                              : 'border-slate-250 bg-white text-slate-950'
-                                            }`}
-                                        />
-                                        <span className="text-xxs text-slate-455 dark:text-neutral-500 block">
-                                          Notes are auto-saved dynamically on keyboard inputs. Click outside to focus lock.
+                                    <div className="flex items-center gap-3">
+                                      {saveStatus[problem.title] === 'saving' && (
+                                        <span className="text-slate-500 animate-pulse font-medium">Auto-saving...</span>
+                                      )}
+                                      {saveStatus[problem.title] === 'saved' && (
+                                        <span className="text-emerald-500 font-bold flex items-center gap-1">
+                                          <Check size={12} />
+                                          Saved!
                                         </span>
-                                      </div>
-                                    </td>
-                                  </tr>
-                                )}
-                              </React.Fragment>
-                            );
-                          })}
-                        </tbody>
-                      </table>
+                                      )}
+                                    </div>
+                                  </div>
+                                  <textarea
+                                    value={noteDrafts[problem.title] ?? ""}
+                                    onChange={(e) => handleNoteChange(problem.title, e.target.value)}
+                                    onBlur={() => saveNote(problem.title)}
+                                    placeholder="Type solution approaches, reminders, or formulas here..."
+                                    rows="3"
+                                    className={`w-full p-2.5 text-xs border rounded-lg focus:outline-none focus:ring-1 focus:ring-emerald-500 focus:border-emerald-500 placeholder-slate-400 font-mono resize-y ${darkMode
+                                        ? 'border-neutral-800 bg-black text-neutral-100'
+                                        : 'border-slate-250 bg-white text-slate-955'
+                                      }`}
+                                  />
+                                </div>
+                              )}
+                            </div>
+                          );
+                        })}
+                      </div>
+
                     </div>
                   )}
 
