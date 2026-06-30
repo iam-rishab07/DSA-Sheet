@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useMemo } from 'react';
+import { Analytics } from "@vercel/analytics/react";
 import { dsaData } from './data';
 import {
   Search,
@@ -245,6 +246,7 @@ export default function DSATracker() {
 
   return (
     <div className={`${darkMode ? 'dark bg-black text-neutral-50' : 'bg-slate-50 text-slate-900'} min-h-screen font-sans transition-colors duration-300`}>
+      <Analytics />
 
       {/* HEADER SECTION */}
       <header className="border-b border-slate-200/80 dark:border-neutral-900 bg-white/80 dark:bg-neutral-950/80 backdrop-blur-md sticky top-0 z-10 transition-all duration-300 shadow-xs">
